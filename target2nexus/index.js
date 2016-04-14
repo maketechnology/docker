@@ -73,7 +73,7 @@ function run(targetPath) {
               name: repoId + ' Mirror',
               // tycho uses url as id for .target files: https://wiki.eclipse.org/Tycho/Target_Platform/Authentication_and_Mirrors
               mirrorOf: repoId,
-              url: nexus.url + '/content/repositories/'+ repoId,
+              url: '${nexus.url}' + '/content/repositories/'+ repoId,
               layout: 'p2',
               mirrorOfLayouts: 'p2'
             //}
@@ -101,7 +101,7 @@ function createSettings(mirrors) {
     //mirror: {
       id: 'internal-repository',
       name: 'Maven Repository Manager running on Nexus',
-      url: nexus.url + '/content/groups/public/',
+      url: '${nexus.url}' + '/content/groups/public/',
       mirrorOf: '*'
     //}
   });
@@ -121,7 +121,7 @@ function createSettings(mirrors) {
                   id: 'central',
                   url: 'http://central',
                   releases: {enabled: true},
-                  snapshots: {enabled: true}
+                  snapshots: {enabled: false}
                 }
               }
             ],
@@ -131,7 +131,7 @@ function createSettings(mirrors) {
                   id: 'central',
                   url: 'http://central',
                   releases: {enabled: true},
-                  snapshots: {enabled: true}
+                  snapshots: {enabled: false}
                 }
               }
             ]
@@ -144,10 +144,10 @@ function createSettings(mirrors) {
     }
   });
 
-  fs.writeFile('settings.xml', settingsXml, function (err) {
+  fs.writeFile('settings-nexus.xml', settingsXml, function (err) {
       if (err)
           return console.log(err);
-      console.log('Created settings.xml');
+      console.log('Created settings-nexus.xml');
   });
 }
 
