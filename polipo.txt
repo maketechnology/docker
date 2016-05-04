@@ -1,5 +1,0 @@
-docker run -d --restart=always -v ${PWD}/polipo-cache:/var/cache/polipo/ --name polipo vimagick/polipo:latest disableIndexing=false disableServersList=false proxyOffline=false maxDiskEntries=1000000 idleTime=2 cacheIsShared=false
-
-
-
-docker run -it --name dzn.mvn --rm -v ${PWD}:/src -w /src maketechnology/jdk7-mvn-xvfb:alpine mvn -s settings-proxy.xml -f com.verum.asdgen2.releng/pom.xml clean verify -Penvs
